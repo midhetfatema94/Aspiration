@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		BBDF16411E140AB4009CAD78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16401E140AB4009CAD78 /* AppDelegate.swift */; };
-		BBDF16431E140AB4009CAD78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16421E140AB4009CAD78 /* ViewController.swift */; };
+		BBDF16431E140AB4009CAD78 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16421E140AB4009CAD78 /* MainViewController.swift */; };
 		BBDF16461E140AB4009CAD78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16441E140AB4009CAD78 /* Main.storyboard */; };
 		BBDF16481E140AB4009CAD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16471E140AB4009CAD78 /* Assets.xcassets */; };
 		BBDF164B1E140AB4009CAD78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16491E140AB4009CAD78 /* LaunchScreen.storyboard */; };
 		BBDF16561E140AB4009CAD78 /* WhatYouCravingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16551E140AB4009CAD78 /* WhatYouCravingTests.swift */; };
 		BBDF16611E140AB4009CAD78 /* WhatYouCravingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16601E140AB4009CAD78 /* WhatYouCravingUITests.swift */; };
+		BBDF166F1E14DDA9009CAD78 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF166E1E14DDA9009CAD78 /* MapViewController.swift */; };
+		BBDF16711E14E592009CAD78 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16701E14E592009CAD78 /* ListViewController.swift */; };
+		BBDF16731E14E5BD009CAD78 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16721E14E5BD009CAD78 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		BBDF163D1E140AB4009CAD78 /* WhatYouCraving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatYouCraving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDF16401E140AB4009CAD78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BBDF16421E140AB4009CAD78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BBDF16421E140AB4009CAD78 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BBDF16451E140AB4009CAD78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BBDF16471E140AB4009CAD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBDF164A1E140AB4009CAD78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		BBDF165C1E140AB4009CAD78 /* WhatYouCravingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatYouCravingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDF16601E140AB4009CAD78 /* WhatYouCravingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatYouCravingUITests.swift; sourceTree = "<group>"; };
 		BBDF16621E140AB4009CAD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBDF166E1E14DDA9009CAD78 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BBDF16701E14E592009CAD78 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		BBDF16721E14E5BD009CAD78 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				BBDF16401E140AB4009CAD78 /* AppDelegate.swift */,
-				BBDF16421E140AB4009CAD78 /* ViewController.swift */,
+				BBDF16421E140AB4009CAD78 /* MainViewController.swift */,
 				BBDF16441E140AB4009CAD78 /* Main.storyboard */,
+				BBDF166E1E14DDA9009CAD78 /* MapViewController.swift */,
+				BBDF16701E14E592009CAD78 /* ListViewController.swift */,
+				BBDF16721E14E5BD009CAD78 /* DetailsViewController.swift */,
 				BBDF16471E140AB4009CAD78 /* Assets.xcassets */,
 				BBDF16491E140AB4009CAD78 /* LaunchScreen.storyboard */,
 				BBDF164C1E140AB4009CAD78 /* Info.plist */,
@@ -262,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBDF16431E140AB4009CAD78 /* ViewController.swift in Sources */,
+				BBDF16431E140AB4009CAD78 /* MainViewController.swift in Sources */,
+				BBDF166F1E14DDA9009CAD78 /* MapViewController.swift in Sources */,
+				BBDF16711E14E592009CAD78 /* ListViewController.swift in Sources */,
 				BBDF16411E140AB4009CAD78 /* AppDelegate.swift in Sources */,
+				BBDF16731E14E5BD009CAD78 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +526,7 @@
 				BBDF16671E140AB4009CAD78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBDF16681E140AB4009CAD78 /* Build configuration list for PBXNativeTarget "WhatYouCravingTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +535,7 @@
 				BBDF166A1E140AB4009CAD78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBDF166B1E140AB4009CAD78 /* Build configuration list for PBXNativeTarget "WhatYouCravingUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +544,7 @@
 				BBDF166D1E140AB4009CAD78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

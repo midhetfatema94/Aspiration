@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WhatYouCraving" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="WhatYouCraving" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -42,12 +42,31 @@
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gmc-1h-K2w">
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gmc-1h-K2w">
                                             <rect key="frame" x="35" y="311" width="305" height="130"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="130" id="nM0-E0-BJi"/>
                                             </constraints>
+                                            <prototypes>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fgO-om-KaX" style="IBUITableViewCellStyleDefault" id="JCS-PF-akj">
+                                                    <rect key="frame" x="0.0" y="1" width="305" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JCS-PF-akj" id="o7J-zL-vYh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fgO-om-KaX">
+                                                                <rect key="frame" x="15" y="0.0" width="275" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
+                                                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </tableViewCellContentView>
+                                                </tableViewCell>
+                                            </prototypes>
                                             <connections>
                                                 <outlet property="dataSource" destination="BYZ-38-t0r" id="k9E-rs-X6w"/>
                                                 <outlet property="delegate" destination="BYZ-38-t0r" id="cH8-NX-OuC"/>
@@ -99,7 +118,7 @@
         <!--Map-->
         <scene sceneID="hwi-b7-yVG">
             <objects>
-                <viewController id="5Kb-JI-LYP" sceneMemberID="viewController">
+                <viewController id="5Kb-JI-LYP" customClass="MapViewController" customModule="WhatYouCraving" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hq4-Qr-bSl"/>
                         <viewControllerLayoutGuide type="bottom" id="31I-WJ-8wx"/>
@@ -124,6 +143,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="Akl-tH-cfP"/>
+                    <connections>
+                        <outlet property="Map" destination="4kN-1l-4U5" id="cme-qe-qTL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3H-YN-z4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,7 +188,7 @@
         <!--List-->
         <scene sceneID="2uA-EC-QY3">
             <objects>
-                <tableViewController id="k5K-Ho-bvx" sceneMemberID="viewController">
+                <tableViewController id="k5K-Ho-bvx" customClass="ListViewController" customModule="WhatYouCraving" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Tbt-8R-OTU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,10 +214,10 @@
             </objects>
             <point key="canvasLocation" x="846" y="828"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="kyR-5B-psX">
             <objects>
-                <viewController id="6d4-zd-74f" sceneMemberID="viewController">
+                <viewController id="6d4-zd-74f" customClass="DetailsViewController" customModule="WhatYouCraving" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bee-Pr-1UE"/>
                         <viewControllerLayoutGuide type="bottom" id="A5c-qQ-vuE"/>
@@ -208,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pM0-gP-NCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="139"/>
+            <point key="canvasLocation" x="1732" y="139"/>
         </scene>
     </scenes>
 </document>
