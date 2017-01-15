@@ -31,21 +31,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        picker = UIPickerView()
-        picker.delegate = self
-        dishTextField.inputView = picker
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
-        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CraveViewController.cancelPicker(sender:)))
-        let middleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let rightButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CraveViewController.donePicker(sender:)))
-        toolbar.setItems([leftButton, middleButton, rightButton], animated: false)
-        dishTextField.inputAccessoryView = toolbar
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Enter your city", message: nil, preferredStyle: .alert)
         
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action:UIAlertAction) -> Void in
             
@@ -64,6 +50,17 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
         present(alert, animated: true, completion: nil)
         
+        picker = UIPickerView()
+        picker.delegate = self
+        dishTextField.inputView = picker
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CraveViewController.cancelPicker(sender:)))
+        let middleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CraveViewController.donePicker(sender:)))
+        toolbar.setItems([leftButton, middleButton, rightButton], animated: false)
+        dishTextField.inputAccessoryView = toolbar
+        
+        self.navigationController!.isNavigationBarHidden = true
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -99,23 +100,53 @@
                                     <outlet property="delegate" destination="5Kb-JI-LYP" id="EaG-V8-QpX"/>
                                 </connections>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2PU-wj-036">
+                                <rect key="frame" x="16" y="72" width="343" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRe-zc-Mge">
+                                        <rect key="frame" x="274" y="5" width="61" height="30"/>
+                                        <state key="normal" title="Change?"/>
+                                        <connections>
+                                            <action selector="changeCuisine:" destination="5Kb-JI-LYP" eventType="touchUpInside" id="xxK-To-I7b"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Cuisine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5h-O3-6mB">
+                                        <rect key="frame" x="8" y="9" width="128" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="B5h-O3-6mB" firstAttribute="leading" secondItem="2PU-wj-036" secondAttribute="leading" constant="8" id="9Dt-PQ-bi5"/>
+                                    <constraint firstItem="B5h-O3-6mB" firstAttribute="centerY" secondItem="2PU-wj-036" secondAttribute="centerY" id="EM4-3n-vro"/>
+                                    <constraint firstAttribute="height" constant="40" id="FFs-co-JMT"/>
+                                    <constraint firstItem="uRe-zc-Mge" firstAttribute="centerY" secondItem="2PU-wj-036" secondAttribute="centerY" id="SGL-IW-n12"/>
+                                    <constraint firstAttribute="trailing" secondItem="uRe-zc-Mge" secondAttribute="trailing" constant="8" id="srh-k5-drZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2PU-wj-036" firstAttribute="trailing" secondItem="Lct-vS-3KO" secondAttribute="trailingMargin" id="5D1-CP-pF6"/>
                             <constraint firstAttribute="trailing" secondItem="4kN-1l-4U5" secondAttribute="trailing" id="LzX-8O-yuw"/>
                             <constraint firstItem="31I-WJ-8wx" firstAttribute="top" secondItem="4kN-1l-4U5" secondAttribute="bottom" id="Pun-kj-jho"/>
+                            <constraint firstItem="2PU-wj-036" firstAttribute="top" secondItem="hq4-Qr-bSl" secondAttribute="bottom" constant="8" id="V7p-VC-DYX"/>
+                            <constraint firstItem="2PU-wj-036" firstAttribute="leading" secondItem="Lct-vS-3KO" secondAttribute="leadingMargin" id="fv3-mT-cO4"/>
                             <constraint firstItem="4kN-1l-4U5" firstAttribute="top" secondItem="hq4-Qr-bSl" secondAttribute="bottom" id="n6c-JC-J18"/>
                             <constraint firstItem="4kN-1l-4U5" firstAttribute="leading" secondItem="Lct-vS-3KO" secondAttribute="leading" id="zOs-Yc-Y7c"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="Akl-tH-cfP"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="Akl-tH-cfP"/>
                     <connections>
                         <outlet property="Map" destination="4kN-1l-4U5" id="cme-qe-qTL"/>
+                        <outlet property="selectedCuisine" destination="B5h-O3-6mB" id="x7A-is-oQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3H-YN-z4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="847" y="139"/>
+            <point key="canvasLocation" x="845.60000000000002" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dT0-gL-HPe">
@@ -160,13 +191,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vm3-ON-pSW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="wep-h2-LcA" detailTextLabel="bBn-aa-WGV" style="IBUITableViewCellStyleValue1" id="vm3-ON-pSW" customClass="RestaurantTableViewCell" customModule="WhatYouCraving" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vm3-ON-pSW" id="sCK-VM-mzS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wep-h2-LcA">
+                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bBn-aa-WGV">
+                                            <rect key="frame" x="316" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cuisine" destination="bBn-aa-WGV" id="Psb-by-A90"/>
+                                    <outlet property="name" destination="wep-h2-LcA" id="8NJ-fn-c2A"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -174,11 +225,11 @@
                             <outlet property="delegate" destination="k5K-Ho-bvx" id="FBx-nO-wb1"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" id="D1M-LD-gyB"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="D1M-LD-gyB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emL-gm-BFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="828"/>
+            <point key="canvasLocation" x="845.60000000000002" y="827.13643178410803"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="kyR-5B-psX">
@@ -199,4 +250,8 @@
             <point key="canvasLocation" x="1732" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="list" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
+    </resources>
 </document>

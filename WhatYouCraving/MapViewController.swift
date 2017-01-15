@@ -13,6 +13,11 @@ import MapKit
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var Map: MKMapView!
+    @IBOutlet weak var selectedCuisine: UILabel!
+    @IBAction func changeCuisine(_ sender: Any) {
+        
+        self.navigationController!.popViewController(animated: true)
+    }
     
     var cuisineName = ""
     let locationManager = CLLocationManager()
@@ -22,6 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        selectedCuisine.text = "Craving \(cuisineName) Food!" 
         Map.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -92,6 +98,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         let restaurant = RestaurantDetails(name: restaurantObject["name"] as! String, url: restaurantObject["menu_url"] as! String, location: RestaurantLocation(lat: Double(location["latitude"] as! String)!, long: Double(location["longitude"] as! String)!, city: location["city"] as! String), cuisine: restaurantObject["cuisines"] as! String)
                         self.allRestaurants.append(restaurant)
                     }
+                    let listVC = self.tabBarController?.viewControllers?.last as! ListViewController
+                    listVC.restaurantList = self.allRestaurants
                     self.getPins()
                 }
             }
