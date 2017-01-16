@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		BB47214C1E2A2AC5002AF7D7 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47214B1E2A2AC5002AF7D7 /* APIModel.swift */; };
 		BB47214F1E2A3044002AF7D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB47214D1E2A3044002AF7D7 /* Main.storyboard */; };
+		BB4721541E2BD9C4002AF7D7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4721531E2BD9C4002AF7D7 /* CoreDataStack.swift */; };
+		BB4721561E2BD9CC002AF7D7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4721551E2BD9CC002AF7D7 /* CoreDataHelper.swift */; };
+		BBAB9B0F1E2CF9CD000DA881 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B0D1E2CF9CD000DA881 /* Model.xcdatamodeld */; };
+		BBAB9B161E2CFFB1000DA881 /* RestaurantLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B101E2CFFB1000DA881 /* RestaurantLocation+CoreDataClass.swift */; };
+		BBAB9B171E2CFFB1000DA881 /* RestaurantLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B111E2CFFB1000DA881 /* RestaurantLocation+CoreDataProperties.swift */; };
+		BBAB9B181E2CFFB1000DA881 /* UserLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B121E2CFFB1000DA881 /* UserLocation+CoreDataClass.swift */; };
+		BBAB9B191E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B131E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift */; };
+		BBAB9B1A1E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B141E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift */; };
+		BBAB9B1B1E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */; };
 		BBDF16411E140AB4009CAD78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16401E140AB4009CAD78 /* AppDelegate.swift */; };
 		BBDF16481E140AB4009CAD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16471E140AB4009CAD78 /* Assets.xcassets */; };
 		BBDF164B1E140AB4009CAD78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16491E140AB4009CAD78 /* LaunchScreen.storyboard */; };
@@ -40,6 +49,15 @@
 /* Begin PBXFileReference section */
 		BB47214B1E2A2AC5002AF7D7 /* APIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		BB47214E1E2A3044002AF7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB4721531E2BD9C4002AF7D7 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		BB4721551E2BD9CC002AF7D7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		BBAB9B0E1E2CF9CD000DA881 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BBAB9B101E2CFFB1000DA881 /* RestaurantLocation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BBAB9B111E2CFFB1000DA881 /* RestaurantLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BBAB9B121E2CFFB1000DA881 /* UserLocation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BBAB9B131E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BBAB9B141E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BBDF163D1E140AB4009CAD78 /* WhatYouCraving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatYouCraving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDF16401E140AB4009CAD78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBDF16471E140AB4009CAD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,10 +123,19 @@
 		BBDF163F1E140AB4009CAD78 /* WhatYouCraving */ = {
 			isa = PBXGroup;
 			children = (
+				BBAB9B101E2CFFB1000DA881 /* RestaurantLocation+CoreDataClass.swift */,
+				BBAB9B111E2CFFB1000DA881 /* RestaurantLocation+CoreDataProperties.swift */,
+				BBAB9B121E2CFFB1000DA881 /* UserLocation+CoreDataClass.swift */,
+				BBAB9B131E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift */,
+				BBAB9B141E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift */,
+				BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */,
+				BBAB9B0D1E2CF9CD000DA881 /* Model.xcdatamodeld */,
 				BBDF16741E14E682009CAD78 /* CraveViewController.swift */,
 				BBDF16401E140AB4009CAD78 /* AppDelegate.swift */,
 				BB47214B1E2A2AC5002AF7D7 /* APIModel.swift */,
 				BBDF166E1E14DDA9009CAD78 /* MapViewController.swift */,
+				BB4721551E2BD9CC002AF7D7 /* CoreDataHelper.swift */,
+				BB4721531E2BD9C4002AF7D7 /* CoreDataStack.swift */,
 				BBDF16701E14E592009CAD78 /* ListViewController.swift */,
 				BB47214D1E2A3044002AF7D7 /* Main.storyboard */,
 				BBDF16721E14E5BD009CAD78 /* DetailsViewController.swift */,
@@ -275,11 +302,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBDF166F1E14DDA9009CAD78 /* MapViewController.swift in Sources */,
+				BBAB9B171E2CFFB1000DA881 /* RestaurantLocation+CoreDataProperties.swift in Sources */,
+				BBAB9B161E2CFFB1000DA881 /* RestaurantLocation+CoreDataClass.swift in Sources */,
 				BBDF16711E14E592009CAD78 /* ListViewController.swift in Sources */,
+				BBAB9B1A1E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift in Sources */,
+				BBAB9B0F1E2CF9CD000DA881 /* Model.xcdatamodeld in Sources */,
 				BBDF16411E140AB4009CAD78 /* AppDelegate.swift in Sources */,
+				BBAB9B181E2CFFB1000DA881 /* UserLocation+CoreDataClass.swift in Sources */,
 				BBDF16731E14E5BD009CAD78 /* DetailsViewController.swift in Sources */,
 				BB47214C1E2A2AC5002AF7D7 /* APIModel.swift in Sources */,
+				BBAB9B1B1E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift in Sources */,
+				BBAB9B191E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift in Sources */,
+				BB4721561E2BD9CC002AF7D7 /* CoreDataHelper.swift in Sources */,
 				BBDF16751E14E682009CAD78 /* CraveViewController.swift in Sources */,
+				BB4721541E2BD9C4002AF7D7 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +481,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = J5VXE76EPL;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WhatYouCraving/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MCreations.WhatYouCraving;
@@ -551,6 +588,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BBAB9B0D1E2CF9CD000DA881 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BBAB9B0E1E2CF9CD000DA881 /* Model.xcdatamodel */,
+			);
+			currentVersion = BBAB9B0E1E2CF9CD000DA881 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BBDF16351E140AB4009CAD78 /* Project object */;
 }

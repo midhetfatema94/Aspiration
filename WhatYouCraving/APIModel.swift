@@ -77,7 +77,7 @@ class Navigation {
     
     func getZomatoRestaurantList(lat: Double, long: Double, cuisineId: String, completion: @escaping (([String: Any]) -> Void)) {
         
-        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)search?count=25&cuisines=\(cuisineId)")!)
+        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)search?count=25&q=\(cuisineId)&lat=\(lat)&lon=\(long)&radius=10000")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var coreData = CoreDataHelper()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

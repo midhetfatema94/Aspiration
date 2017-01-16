@@ -22,6 +22,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     @IBOutlet weak var dishTextField: UITextField!
     @IBAction func getRestaurants(_ sender: Any) {
         
+        dishTextField.resignFirstResponder()
         if cuisineId != nil {
             
             performSegue(withIdentifier: "getPlaces", sender: nil)
@@ -60,7 +61,36 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         toolbar.setItems([leftButton, middleButton, rightButton], animated: false)
         dishTextField.inputAccessoryView = toolbar
         
+        NotificationCenter.default.addObserver(self, selector: #selector(CraveViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CraveViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         self.navigationController!.isNavigationBarHidden = true
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        
+        if let keyboardSize = (((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
+            
+            let orientation = UIApplication.shared.statusBarOrientation
+            
+            if  orientation.isLandscape {
+                
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            let orientation = UIApplication.shared.statusBarOrientation
+            
+            if orientation.isLandscape {
+                
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

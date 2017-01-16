@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CoreData
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
@@ -20,6 +21,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     var cuisineName = ""
+    var cityName = ""
     let locationManager = CLLocationManager()
     var allRestaurants: [RestaurantDetails] = []
     var annotations: [MKPointAnnotation] = []
@@ -81,29 +83,128 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getCuisinePlaces(lat: Double, long: Double) {
         
-        request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, completion: {response in
+        let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+        let latDelta:CLLocationDegrees = 1.5
+        let lonDelta:CLLocationDegrees = 1.5
+        let span = MKCoordinateSpanMake(latDelta, lonDelta)
+        let region = MKCoordinateRegionMake(coordinate, span)
+        self.Map.setRegion(region, animated: false)
+        
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "UserLocation")
+        let pin = try! coreData.context.fetch(fr) as! [UserLocation]
+        
+        print("match this info:", lat, long, cuisineName)
+        var matchingPins: [UserLocation] = []
+        
+        for eachPin in pin {
             
-            DispatchQueue.main.async {
+            print("pin info:", eachPin.latitude, eachPin.longitude, eachPin.cuisine)
+            if eachPin.latitude == lat && eachPin.longitude == long && eachPin.cuisine == cuisineName {
                 
-                if response["code"] != nil {
-                }
-                else {
-                    
-                    let allResponses = response["restaurants"] as! [[String: Any]]
-                    
-                    for eachResponse in allResponses {
-                        
-                        let restaurantObject = eachResponse["restaurant"] as! [String: Any]
-                        let location = restaurantObject["location"] as! [String: Any]
-                        let restaurant = RestaurantDetails(name: restaurantObject["name"] as! String, url: restaurantObject["menu_url"] as! String, location: RestaurantLocation(lat: Double(location["latitude"] as! String)!, long: Double(location["longitude"] as! String)!, city: location["city"] as! String), cuisine: restaurantObject["cuisines"] as! String)
-                        self.allRestaurants.append(restaurant)
-                    }
-                    let listVC = self.tabBarController?.viewControllers?.last as! ListViewController
-                    listVC.restaurantList = self.allRestaurants
-                    self.getPins()
-                }
+                print("found matching pin!")
+                matchingPins.append(eachPin)
             }
-        })
+        }
+        
+        print("searching core data:", pin.count)
+        
+        if matchingPins.count > 0 {
+            
+            print("using core data")
+            
+            let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "RestaurantInfo")
+            fr.predicate = NSPredicate(format: "userLocation = %@", argumentArray: matchingPins)
+            let restaurants = try! coreData.context.fetch(fr) as! [RestaurantInfo]
+            
+            if restaurants.count > 0 {
+                
+                for eachRest in restaurants {
+                    
+                    let rest = RestaurantDetails(name: eachRest.name!, url: eachRest.menuUrl!, location: RestaurantLoc(lat: eachRest.myLocation!.latitude, long: eachRest.myLocation!.longitude), cuisine: cuisineName)
+                    allRestaurants.append(rest)
+                }
+                setList()
+            }
+        }
+        
+        else {
+            
+            request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, completion: {response in
+                
+                DispatchQueue.main.async {
+                    
+                    if response["code"] != nil {
+                    }
+                    else {
+                        
+                        let allResponses = response["restaurants"] as! [[String: Any]]
+                        
+                        if allResponses.count > 0 {
+                            
+                            for eachResponse in allResponses {
+                                
+                                let restaurantObject = eachResponse["restaurant"] as! [String: Any]
+                                let location = restaurantObject["location"] as! [String: Any]
+                                let restaurant = RestaurantDetails(name: restaurantObject["name"] as! String, url: restaurantObject["menu_url"] as! String, location: RestaurantLoc(lat: Double(location["latitude"] as! String)!, long: Double(location["longitude"] as! String)!), cuisine: restaurantObject["cuisines"] as! String)
+                                self.allRestaurants.append(restaurant)
+                            }
+                            self.saveData(restInfo: self.allRestaurants, userInfo: LocationUser(lat: lat, long: long, city: self.cityName))
+                            self.setList()
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func saveData(restInfo: [RestaurantDetails], userInfo: LocationUser) {
+        
+//        DispatchQueue.init(label: "newQueue").async {
+        
+            print("saving core data")
+            
+            let newPin = NSEntityDescription.insertNewObject(forEntityName: "UserLocation", into: coreData.context) as! UserLocation
+            newPin.city = userInfo.city
+            newPin.cuisine = self.cuisineName
+            newPin.latitude = userInfo.lat
+            newPin.longitude = userInfo.long
+            print(newPin)
+            
+            for each in restInfo {
+                
+                let newRestLocation = NSEntityDescription.insertNewObject(forEntityName: "RestaurantLocation", into: coreData.context) as! RestaurantLocation
+                newRestLocation.latitude = each.location.lat
+                newRestLocation.longitude = each.location.long
+                print(newRestLocation)
+                
+                let newRest = NSEntityDescription.insertNewObject(forEntityName: "RestaurantInfo", into: coreData.context) as! RestaurantInfo
+                newRest.cuisine = self.cuisineName
+                newRest.menuUrl = each.zomatoUrl
+                newRest.name = each.name
+                newRest.userLocation = newPin
+                newRest.myLocation = newRestLocation
+                print(newRest)
+            }
+        
+//            do {
+//                try coreData.stack.dropAllData()
+//            } catch {
+//                print("Error while dropping data")
+//            }
+        
+            do {
+                try coreData.stack.saveContext()
+            } catch {
+                print("Error while saving.")
+            }
+//        }
+    }
+    
+    func setList() {
+        
+        let listVC = self.tabBarController?.viewControllers?.last as! ListViewController
+        listVC.restaurantList = self.allRestaurants
+        self.getPins()
     }
     
     func getPins() {
@@ -150,13 +251,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
 struct RestaurantDetails {
     
-    var location: RestaurantLocation!
+    var location: RestaurantLoc!
     var name: String!
     var zomatoUrl: String!
     var cuisine: String
     
     
-    init(name: String, url: String, location: RestaurantLocation, cuisine: String) {
+    init(name: String, url: String, location: RestaurantLoc, cuisine: String) {
         
         self.name = name
         self.zomatoUrl = url
@@ -165,7 +266,19 @@ struct RestaurantDetails {
     }
 }
 
-struct RestaurantLocation {
+struct RestaurantLoc {
+    
+    var lat: Double!
+    var long: Double!
+    
+    init(lat: Double, long: Double) {
+        
+        self.lat = lat
+        self.long = long
+    }
+}
+
+struct LocationUser {
     
     var lat: Double!
     var long: Double!
