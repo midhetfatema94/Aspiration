@@ -18,6 +18,7 @@
 		BBAB9B191E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B131E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift */; };
 		BBAB9B1A1E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B141E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift */; };
 		BBAB9B1B1E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */; };
+		BBAB9B1D1E2D0DB6000DA881 /* HelperAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB9B1C1E2D0DB6000DA881 /* HelperAlerts.swift */; };
 		BBDF16411E140AB4009CAD78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF16401E140AB4009CAD78 /* AppDelegate.swift */; };
 		BBDF16481E140AB4009CAD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16471E140AB4009CAD78 /* Assets.xcassets */; };
 		BBDF164B1E140AB4009CAD78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBDF16491E140AB4009CAD78 /* LaunchScreen.storyboard */; };
@@ -58,6 +59,7 @@
 		BBAB9B131E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BBAB9B141E2CFFB1000DA881 /* RestaurantInfo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RestaurantInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BBAB9B1C1E2D0DB6000DA881 /* HelperAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperAlerts.swift; sourceTree = "<group>"; };
 		BBDF163D1E140AB4009CAD78 /* WhatYouCraving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatYouCraving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDF16401E140AB4009CAD78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBDF16471E140AB4009CAD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				BBAB9B151E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift */,
 				BBAB9B0D1E2CF9CD000DA881 /* Model.xcdatamodeld */,
 				BBDF16741E14E682009CAD78 /* CraveViewController.swift */,
+				BBAB9B1C1E2D0DB6000DA881 /* HelperAlerts.swift */,
 				BBDF16401E140AB4009CAD78 /* AppDelegate.swift */,
 				BB47214B1E2A2AC5002AF7D7 /* APIModel.swift */,
 				BBDF166E1E14DDA9009CAD78 /* MapViewController.swift */,
@@ -313,6 +316,7 @@
 				BB47214C1E2A2AC5002AF7D7 /* APIModel.swift in Sources */,
 				BBAB9B1B1E2CFFB1000DA881 /* RestaurantInfo+CoreDataProperties.swift in Sources */,
 				BBAB9B191E2CFFB1000DA881 /* UserLocation+CoreDataProperties.swift in Sources */,
+				BBAB9B1D1E2D0DB6000DA881 /* HelperAlerts.swift in Sources */,
 				BB4721561E2BD9CC002AF7D7 /* CoreDataHelper.swift in Sources */,
 				BBDF16751E14E682009CAD78 /* CraveViewController.swift in Sources */,
 				BB4721541E2BD9C4002AF7D7 /* CoreDataStack.swift in Sources */,

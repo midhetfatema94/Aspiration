@@ -25,6 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     var allRestaurants: [RestaurantDetails] = []
     var annotations: [MKPointAnnotation] = []
+    let apiAlerts = Alert()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,36 +126,50 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 setList()
             }
+            else {
+                getDataFromAPI(lat: lat, long: long)
+            }
         }
         
         else {
             
-            request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, completion: {response in
+            getDataFromAPI(lat: lat, long: long)
+        }
+    }
+    
+    func getDataFromAPI(lat: Double, long: Double) {
+        
+        request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, completion: {response in
+            
+            DispatchQueue.main.async {
                 
-                DispatchQueue.main.async {
+                if response["code"] != nil {
                     
-                    if response["code"] != nil {
+                    print("error", response)
+                    self.apiAlerts.showAlert(title: "Error!", message: response["message"] as! String, vc: self)
+                }
+                else {
+                    
+                    let allResponses = response["restaurants"] as! [[String: Any]]
+                    
+                    if allResponses.count > 0 {
+                        
+                        for eachResponse in allResponses {
+                            
+                            let restaurantObject = eachResponse["restaurant"] as! [String: Any]
+                            let location = restaurantObject["location"] as! [String: Any]
+                            let restaurant = RestaurantDetails(name: restaurantObject["name"] as! String, url: restaurantObject["menu_url"] as! String, location: RestaurantLoc(lat: Double(location["latitude"] as! String)!, long: Double(location["longitude"] as! String)!), cuisine: restaurantObject["cuisines"] as! String)
+                            self.allRestaurants.append(restaurant)
+                        }
+                        self.saveData(restInfo: self.allRestaurants, userInfo: LocationUser(lat: lat, long: long, city: self.cityName))
+                        self.setList()
                     }
                     else {
-                        
-                        let allResponses = response["restaurants"] as! [[String: Any]]
-                        
-                        if allResponses.count > 0 {
-                            
-                            for eachResponse in allResponses {
-                                
-                                let restaurantObject = eachResponse["restaurant"] as! [String: Any]
-                                let location = restaurantObject["location"] as! [String: Any]
-                                let restaurant = RestaurantDetails(name: restaurantObject["name"] as! String, url: restaurantObject["menu_url"] as! String, location: RestaurantLoc(lat: Double(location["latitude"] as! String)!, long: Double(location["longitude"] as! String)!), cuisine: restaurantObject["cuisines"] as! String)
-                                self.allRestaurants.append(restaurant)
-                            }
-                            self.saveData(restInfo: self.allRestaurants, userInfo: LocationUser(lat: lat, long: long, city: self.cityName))
-                            self.setList()
-                        }
+                        self.apiAlerts.showAlert(title: "Sorry", message: "No restaurants found!", vc: self)
                     }
                 }
-            })
-        }
+            }
+        })
     }
     
     func saveData(restInfo: [RestaurantDetails], userInfo: LocationUser) {

@@ -18,6 +18,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     }
     var picker: UIPickerView!
     var cuisineId: Int!
+    let alerts = Alert()
     
     @IBOutlet weak var dishTextField: UITextField!
     @IBAction func getRestaurants(_ sender: Any) {
@@ -40,15 +41,10 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             self.cityName = textField!.text!
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action: UIAlertAction) -> Void in
-        }
-        
         alert.addTextField {(textField: UITextField) -> Void in
         }
         
         alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
         present(alert, animated: true, completion: nil)
         
         picker = UIPickerView()
@@ -110,6 +106,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             DispatchQueue.main.async {
                 
                 if response["code"] != nil {
+                    self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)
                 }
                 else {
                     self.suggestions = response["cuisines"] as! [[String: Any]]
@@ -126,6 +123,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             DispatchQueue.main.async {
                 
                 if response["code"] != nil {
+                    self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)
                 }
                 else {
                     let location = response["location_suggestions"] as! [[String: Any]]
@@ -165,6 +163,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             let vc = segue.destination as! UITabBarController
             let mapVC = vc.viewControllers?.first as! MapViewController
             mapVC.cuisineName = dishTextField.text!
+            mapVC.cityName = cityName
         }
     }
 }
