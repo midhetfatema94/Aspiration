@@ -20,6 +20,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var cuisineId: Int!
     let alerts = Alert()
     
+    @IBOutlet weak var mainStack: UIStackView!
     @IBOutlet weak var dishTextField: UITextField!
     @IBAction func getRestaurants(_ sender: Any) {
         
@@ -61,6 +62,20 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(CraveViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         self.navigationController!.isNavigationBarHidden = true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let orientation = UIApplication.shared.statusBarOrientation
+        
+        if orientation.isPortrait {
+            
+            mainStack.axis = .vertical
+        }
+        else if orientation.isLandscape {
+            
+            mainStack.axis = .horizontal
+        }
+        
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -125,9 +140,16 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                 if response["code"] != nil {
                     self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)
                 }
-                else {
-                    let location = response["location_suggestions"] as! [[String: Any]]
-                    self.getCuisineSuggestions(id: location[0]["id"] as! Int)
+                else if let suggestions = response["location_suggestions"] as? [Int] {
+                    if suggestions.count > 0 {
+                        
+                        let location = response["location_suggestions"] as! [[String: Any]]
+                        self.getCuisineSuggestions(id: location[0]["id"] as! Int)
+                    }
+                    else {
+                        
+                        self.alerts.showAlert(title: "Sorry", message: "No suggestions found!", vc: self)
+                    }
                 }
             }
         })
