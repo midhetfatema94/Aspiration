@@ -1,0 +1,6 @@
+framework module Pods_WhatYouCraving {
+  umbrella header "Pods-WhatYouCraving-umbrella.h"
+
+  export *
+  module * { export * }
+}

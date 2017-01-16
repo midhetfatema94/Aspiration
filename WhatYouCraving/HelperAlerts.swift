@@ -8,27 +8,27 @@
 
 import Foundation
 import UIKit
+import CDAlertView
 
 class Alert {
     
     func showAlert(title: String, message: String, vc: UIViewController) {
         
-        var alert = UIAlertController()
+        var alert = CDAlertView()
         
         if title == "" {
             
-            alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert = CDAlertView(title: nil, message: message, type: .error)
         }
         else if message == "" {
-            alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            alert = CDAlertView(title: title, message: nil, type: .error)
         }
         else {
-            alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert = CDAlertView(title: title, message: message, type: .error)
         }
         
-        let saveAction = UIAlertAction(title: "OK", style: .default, handler: { (action:UIAlertAction) -> Void in
-        })
-        alert.addAction(saveAction)
-        vc.present(alert, animated: true, completion: nil)
-    } 
+        let saveAction = CDAlertViewAction(title: "OK")
+        alert.add(action: saveAction)
+        alert.show()
+    }
 }

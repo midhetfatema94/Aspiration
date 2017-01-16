@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>CDAlertView-CDAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CDAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-WhatYouCraving.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-WhatYouCravingTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-WhatYouCravingUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>369C26E0019831DFC30E7122499AB269</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4AC9EAE7E65A7741B3499A722D85C063</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B52F9F3DA67ADAF284B637B19DA12A0D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4BDF1191BBE4F429F08A241D8B53E2A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E09AD2AD8805BCCA1A84EACD2FBDA556</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

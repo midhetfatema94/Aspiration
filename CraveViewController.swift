@@ -131,8 +131,6 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                 }
             }
         })
-        
-        
     }
     
     func cancelPicker(sender: UIBarButtonItem) {

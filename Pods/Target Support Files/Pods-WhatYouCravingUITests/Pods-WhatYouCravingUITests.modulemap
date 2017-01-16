@@ -1,0 +1,6 @@
+framework module Pods_WhatYouCravingUITests {
+  umbrella header "Pods-WhatYouCravingUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
