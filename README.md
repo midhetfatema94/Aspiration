@@ -1,1 +1,3 @@
 # Aspiration
+
+This project has been my aspiration, hence, the name of the repo. The design is simple where I take the Zomato API to fetch nearby restaurants for the cuisine you have selected. So, initially it asks for the city you want to search for and that will be the city you reside in because you're searching for something nearby. When it gives you a cuisine suggestion list, you search for your the cuisine you are craving for and go to the next page where the restaurants are shown in a map as well as list view. On selecting the map or list views, you are taken to Zomato's url which contains the menu of the restaurant.
