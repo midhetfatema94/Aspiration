@@ -15,6 +15,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     var picker: UIPickerView!
     var cuisineId: Int!
     let alerts = Alert()
+    var activity = UIActivityIndicatorView()
     
     @IBOutlet weak var mainStack: UIStackView!
     @IBOutlet weak var dishTextField: UITextField!
@@ -46,6 +47,12 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(CraveViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         self.navigationController!.isNavigationBarHidden = true
+        
+        activity = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        activity.center = self.view.center
+        self.view.addSubview(activity)
+        activity.isHidden = true
+        
     }
     
     func showAlertBox() {
@@ -56,6 +63,8 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             let textField = alert.textFields!.first
             self.cityName = textField!.text!
+            self.activity.isHidden = false
+            self.activity.startAnimating()
             self.getCityName()
         })
         
@@ -125,6 +134,8 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
                     self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)
                 }
                 else {
+                    self.activity.stopAnimating()
+                    self.activity.isHidden = true
                     self.suggestions = response["cuisines"] as! [[String: Any]]
                     self.picker.reloadAllComponents()
                 }
@@ -137,6 +148,9 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         request.getZomatoCityId(cityName: cityName, controller: self, completion: {response in
             
             DispatchQueue.main.async {
+                
+                self.activity.isHidden = true
+                self.activity.stopAnimating()
                 
                 if response["code"] != nil {
                     self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)

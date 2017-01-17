@@ -26,6 +26,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var allRestaurants: [RestaurantDetails] = []
     var annotations: [MKPointAnnotation] = []
     let apiAlerts = Alert()
+    var activity = UIActivityIndicatorView()
+    var didFindLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +38,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
+        activity = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        activity.center = self.view.center
+        self.view.addSubview(activity)
+        activity.isHidden = true
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let myLocation = manager.location {
-            let locValue: CLLocationCoordinate2D = myLocation.coordinate
-            getCuisinePlaces(lat: locValue.latitude, long: locValue.longitude)
+            if !didFindLocation {
+                
+                let locValue: CLLocationCoordinate2D = myLocation.coordinate
+                getCuisinePlaces(lat: locValue.latitude, long: locValue.longitude)
+                didFindLocation = true
+            }
         }
     }
     
@@ -127,12 +139,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 setList()
             }
             else {
+                
+                self.activity.isHidden = false
+                self.activity.startAnimating()
                 getDataFromAPI(lat: lat, long: long)
             }
         }
         
         else {
             
+            self.activity.isHidden = false
+            self.activity.startAnimating()
             getDataFromAPI(lat: lat, long: long)
         }
     }
@@ -142,6 +159,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, controller: self, completion: {response in
             
             DispatchQueue.main.async {
+                
+                self.activity.isHidden = true
+                self.activity.stopAnimating()
                 
                 if response["code"] != nil {
                     

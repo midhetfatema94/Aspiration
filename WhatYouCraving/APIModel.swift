@@ -31,7 +31,9 @@ class Navigation {
             if let errorDescription = error?.localizedDescription {
                 
                 print("Error: \(error)")
-                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                DispatchQueue.main.async {
+                    self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                }
                 return
             }
             print("cuisine id", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
@@ -49,7 +51,9 @@ class Navigation {
     
     func getZomatoCityId(cityName: String, controller: UIViewController, completion: @escaping (([String: Any]) -> Void)) {
         
-        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)cities?q=\(cityName)")!)
+        let escapedCityName = cityName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        print("city name: ", "\(zomatoRequestUrl)cities?q=\(escapedCityName)")
+        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)cities?q=\(escapedCityName)")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -61,10 +65,12 @@ class Navigation {
             if let errorDescription = error?.localizedDescription {
                 
                 print("Error: \(error)")
-                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                DispatchQueue.main.async {
+                    self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                }
                 return
             }
-            print("city id", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+//            print("city id", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
             do {
                 let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                 print("response: \(result)")
@@ -79,7 +85,8 @@ class Navigation {
     
     func getZomatoRestaurantList(lat: Double, long: Double, cuisineId: String, controller: UIViewController, completion: @escaping (([String: Any]) -> Void)) {
         
-        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)search?count=25&q=\(cuisineId)&lat=\(lat)&lon=\(long)&radius=10000")!)
+        let escapedCuisine = cuisineId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)search?count=25&q=\(escapedCuisine)&lat=\(lat)&lon=\(long)&radius=10000")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -90,8 +97,10 @@ class Navigation {
             
             if let errorDescription = error?.localizedDescription {
                 
-                print("Error: \(error)")
-                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                    print("Error: \(error)")
+                DispatchQueue.main.async {
+                    self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
+                }
                 return
             }
             print("main response", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)

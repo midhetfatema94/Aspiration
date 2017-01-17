@@ -17,13 +17,15 @@ class Alert {
         var alert = CDAlertView()
         
         if title == "" {
-            
+            print("here 1")
             alert = CDAlertView(title: nil, message: message, type: .error)
         }
         else if message == "" {
+            print("here 2")
             alert = CDAlertView(title: title, message: nil, type: .error)
         }
         else {
+            print("here 3")
             alert = CDAlertView(title: title, message: message, type: .error)
         }
         
