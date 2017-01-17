@@ -11,11 +11,7 @@ import UIKit
 class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var suggestions: [[String: Any]] = []
-    var cityName: String = "" {
-        didSet {
-            getCityName()
-        }
-    }
+    var cityName: String = ""
     var picker: UIPickerView!
     var cuisineId: Int!
     let alerts = Alert()
@@ -34,19 +30,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let alert = UIAlertController(title: "Enter your city", message: nil, preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action:UIAlertAction) -> Void in
-            
-            let textField = alert.textFields!.first
-            self.cityName = textField!.text!
-        })
-        
-        alert.addTextField {(textField: UITextField) -> Void in
-        }
-        
-        alert.addAction(saveAction)
-        present(alert, animated: true, completion: nil)
+        showAlertBox()
         
         picker = UIPickerView()
         picker.delegate = self
@@ -64,6 +48,24 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         self.navigationController!.isNavigationBarHidden = true
     }
     
+    func showAlertBox() {
+        
+        let alert = UIAlertController(title: "Enter your city", message: nil, preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action:UIAlertAction) -> Void in
+            
+            let textField = alert.textFields!.first
+            self.cityName = textField!.text!
+            self.getCityName()
+        })
+        
+        alert.addTextField {(textField: UITextField) -> Void in
+        }
+        
+        alert.addAction(saveAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let orientation = UIApplication.shared.statusBarOrientation
         
@@ -75,7 +77,6 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             mainStack.axis = .horizontal
         }
-        
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -116,7 +117,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func getCuisineSuggestions(id: Int) {
         
-        request.getZomatoCuisineId(cityId: 3, completion: {response in
+        request.getZomatoCuisineId(cityId: 3, controller: self, completion: {response in
             
             DispatchQueue.main.async {
                 
@@ -133,22 +134,22 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func getCityName() {
         
-        request.getZomatoCityId(cityName: cityName, completion: {response in
+        request.getZomatoCityId(cityName: cityName, controller: self, completion: {response in
             
             DispatchQueue.main.async {
                 
                 if response["code"] != nil {
                     self.alerts.showAlert(title: "Error", message: response["message"] as! String, vc: self)
                 }
-                else if let suggestions = response["location_suggestions"] as? [Int] {
+                else if let suggestions = response["location_suggestions"] as? [[String: Any]] {
                     if suggestions.count > 0 {
                         
-                        let location = response["location_suggestions"] as! [[String: Any]]
-                        self.getCuisineSuggestions(id: location[0]["id"] as! Int)
+                        self.getCuisineSuggestions(id: suggestions[0]["id"] as! Int)
                     }
                     else {
                         
                         self.alerts.showAlert(title: "Sorry", message: "No suggestions found!", vc: self)
+                        self.showAlertBox()
                     }
                 }
             }

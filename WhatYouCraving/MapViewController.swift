@@ -139,7 +139,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getDataFromAPI(lat: Double, long: Double) {
         
-        request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, completion: {response in
+        request.getZomatoRestaurantList(lat: lat, long: long, cuisineId: cuisineName, controller: self, completion: {response in
             
             DispatchQueue.main.async {
                 

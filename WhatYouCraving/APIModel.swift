@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 var request = Navigation()
 
@@ -14,8 +15,9 @@ class Navigation {
     
     var apiKey = "50aa89dec8c92e84ba1ecd838dff9909"
     var zomatoRequestUrl = "https://developers.zomato.com/api/v2.1/"
+    let alerts = Alert()
     
-    func getZomatoCuisineId(cityId: Int, completion: @escaping (([String: Any]) -> Void)) {
+    func getZomatoCuisineId(cityId: Int, controller: UIViewController, completion: @escaping (([String: Any]) -> Void)) {
         
         let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)cuisines?city_id=\(cityId)")!)
         request.httpMethod = "POST"
@@ -26,10 +28,10 @@ class Navigation {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
-            if error != nil {
+            if let errorDescription = error?.localizedDescription {
                 
                 print("Error: \(error)")
-//                helper.giveErrorAlerts(errorString: "Request failed", errorMessage: error!.localizedDescription, vc: controller)
+                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
                 return
             }
             print("cuisine id", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
@@ -45,7 +47,7 @@ class Navigation {
         task.resume()
     }
     
-    func getZomatoCityId(cityName: String, completion: @escaping (([String: Any]) -> Void)) {
+    func getZomatoCityId(cityName: String, controller: UIViewController, completion: @escaping (([String: Any]) -> Void)) {
         
         let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)cities?q=\(cityName)")!)
         request.httpMethod = "POST"
@@ -56,10 +58,10 @@ class Navigation {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
-            if error != nil {
+            if let errorDescription = error?.localizedDescription {
                 
                 print("Error: \(error)")
-                //                helper.giveErrorAlerts(errorString: "Request failed", errorMessage: error!.localizedDescription, vc: controller)
+                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
                 return
             }
             print("city id", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
@@ -75,7 +77,7 @@ class Navigation {
         task.resume()
     }
     
-    func getZomatoRestaurantList(lat: Double, long: Double, cuisineId: String, completion: @escaping (([String: Any]) -> Void)) {
+    func getZomatoRestaurantList(lat: Double, long: Double, cuisineId: String, controller: UIViewController, completion: @escaping (([String: Any]) -> Void)) {
         
         let request = NSMutableURLRequest(url: URL(string: "\(zomatoRequestUrl)search?count=25&q=\(cuisineId)&lat=\(lat)&lon=\(long)&radius=10000")!)
         request.httpMethod = "POST"
@@ -86,10 +88,10 @@ class Navigation {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
-            if error != nil {
+            if let errorDescription = error?.localizedDescription {
                 
                 print("Error: \(error)")
-                //                helper.giveErrorAlerts(errorString: "Request failed", errorMessage: error!.localizedDescription, vc: controller)
+                self.alerts.showAlert(title: "Request Failed", message: errorDescription, vc: controller)
                 return
             }
             print("main response", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
