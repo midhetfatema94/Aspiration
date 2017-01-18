@@ -17,8 +17,14 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     let alerts = Alert()
     var activity = UIActivityIndicatorView()
     
+    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var mainStack: UIStackView!
     @IBOutlet weak var dishTextField: UITextField!
+    
+    @IBAction func changeCity(_ sender: Any) {
+        
+        showAlertBox()
+    }
     @IBAction func getRestaurants(_ sender: Any) {
         
         dishTextField.resignFirstResponder()
@@ -63,6 +69,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
             
             let textField = alert.textFields!.first
             self.cityName = textField!.text!
+            self.cityLabel.text = "I'm in \(textField!.text!)!"
             self.activity.isHidden = false
             self.activity.startAnimating()
             self.getCityName()
