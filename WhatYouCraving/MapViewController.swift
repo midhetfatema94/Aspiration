@@ -41,6 +41,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         activity = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         activity.center = self.view.center
+        activity.color = UIColor.black
         self.view.addSubview(activity)
         activity.isHidden = true
     }

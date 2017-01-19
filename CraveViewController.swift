@@ -37,7 +37,8 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showAlertBox()
+//        showAlertBox()
+        getCityName()
         
         picker = UIPickerView()
         picker.delegate = self
@@ -56,6 +57,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
         
         activity = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         activity.center = self.view.center
+        activity.color = UIColor.black
         self.view.addSubview(activity)
         activity.isHidden = true
         
@@ -63,23 +65,23 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func showAlertBox() {
         
-        let alert = UIAlertController(title: "Enter your city", message: nil, preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action:UIAlertAction) -> Void in
-            
-            let textField = alert.textFields!.first
-            self.cityName = textField!.text!
-            self.cityLabel.text = "I'm in \(textField!.text!)!"
-            self.activity.isHidden = false
-            self.activity.startAnimating()
-            self.getCityName()
-        })
-        
-        alert.addTextField {(textField: UITextField) -> Void in
-        }
-        
-        alert.addAction(saveAction)
-        present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Enter your city", message: nil, preferredStyle: .alert)
+//        
+//        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action:UIAlertAction) -> Void in
+//            
+//            let textField = alert.textFields!.first
+//            self.cityName = textField!.text!
+//            self.cityLabel.text = "I'm in \(textField!.text!)!"
+//            self.activity.isHidden = false
+//            self.activity.startAnimating()
+//            self.getCityName()
+//        })
+//        
+//        alert.addTextField {(textField: UITextField) -> Void in
+//        }
+//        
+//        alert.addAction(saveAction)
+//        present(alert, animated: true, completion: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -152,7 +154,7 @@ class CraveViewController: UIViewController, UITextFieldDelegate, UIPickerViewDe
     
     func getCityName() {
         
-        request.getZomatoCityId(cityName: cityName, controller: self, completion: {response in
+        request.getZomatoCityId(cityName: "Mumbai", controller: self, completion: {response in
             
             DispatchQueue.main.async {
                 
